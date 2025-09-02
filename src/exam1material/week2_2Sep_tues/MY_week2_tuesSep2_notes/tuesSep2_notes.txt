@@ -33,7 +33,7 @@ When is this true? When is this false?
 
 
 p q  #  p → q
---------------
+-------------- when is the promise broken?
 T T  #    
 T F  #    
 F T  #    
@@ -61,17 +61,23 @@ Consider ¬p ∨ q ∧ r.
 Order of operations
 
 In math? 
-
-
+()
+expononents
+*, /
++, -
 
 For logic statements (∧ ∨ ¬ →)?
 
-
+()
+¬ (not) //right to left
+∧ (AND)
+V (OR)
+→ (IMPLIES) //right to left
 
 
 
 Given this statement:
-
+          
     ¬p ∨ q ∧ r
 
 
@@ -79,7 +85,7 @@ Given this statement:
 
 Add () to show the order of operations.
 
-
+(¬p)
 
 
 
@@ -104,11 +110,11 @@ Order of operations
     ∧ and ∨ evaluate left to right
         p ∧ q ∧ r is equivalent to....
         p ∨ q ∨ r is equivalent to....
-
+//() around the left most evaluation
 
     → evaluates right to left
         p → q → r is equivalent to....
-
+//() around the right most evaluation
 
 
 
@@ -119,7 +125,7 @@ Top-level operator (what happens LAST?)
 
 
 ¬p ∨ q ∧ r
-
+//NOT then AND then OR
 
 top-level? 
 
