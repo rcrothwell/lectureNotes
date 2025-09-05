@@ -59,11 +59,12 @@ z != 7 && str.contains(sub)
 
 --> what are the propositional atoms?
 
-
+p: z == 7
+q: str.contains(sub)
 
 --> express in propositional logic
 
-
+¬
 
 ////////////////////////////////////////
 
@@ -74,19 +75,24 @@ You can't enroll for the course if you haven't taken the prerequisite.
 
 --> what are the propositional atoms?
 
-
+p: You can enroll for the course
+q: You have taken the prerequisite
 
 --> translate to propositional logic:
 
+¬q → ¬p
+
 really saying:
 
-
+if you haven't taken the prerequisite, then you can't enroll for the course
 
 
 
 What is the *contrapositive* of our statement?
 
+p → q
 
+If you have enrolled in the course, then you have taken the prerequisite.
 
 
 
@@ -104,10 +110,16 @@ if (x <= 2 || y >= 0) {
 
 Propositional atoms?
 
+p: x <= 2
+q: y >= 0
+r: z == 17
+s: answer == 25
 
 Translation? (if ... then ...)
 
+if(both conditions were true) then answer would be 25
 
+(p ∨ q) ∧ ¬r → s
 //////////////////////////////////
 
 Consider these two statements:
@@ -118,11 +130,11 @@ q: I can drive a car
 
 1) If I am at least 16 years old, then I can drive a car.
 
-
+p → q
 
 2) I'm not at least 16 years old or I can drive a car.
 
-
+¬p ∨ q
 
 --> are they saying the same thing?
 
@@ -131,7 +143,7 @@ q: I can drive a car
 
 --> could we PROVE it? (equiv1.logika, equiv2.logika)
 
-
+For every possible truth assignment, the two statements have the same output.
 
 
 
@@ -155,7 +167,7 @@ if (a == 4 || a == 5) {
 How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
-
+if (a != 4 && a != 5)
 
 
 ///
@@ -167,7 +179,7 @@ if (a == 4 && b == 5) {
 How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
-
+if (a != 4 || b != 5)
 
 
 
@@ -175,14 +187,14 @@ How could we express the NEGATION
 
 DeMorgan's laws in propositional logic:
 
-¬(p ∨ q) is equivalent to... 
+¬(p ∨ q) is equivalent to... ¬p ∧ ¬q
 
-¬(p ∧ q) is equivalent to... 
+¬(p ∧ q) is equivalent to... ¬p ∨ ¬q
 
 
 --> how can we prove the first of DeMorgan's laws?
 
-
+For every possible truth assignment 
 
 
 
@@ -198,7 +210,7 @@ if (Character.isDigit(letter) || num < 10) {
 --> how would we negate it without using a ! operator?
     also no extra ()
 
-
+if (Character.isDigit(letter) == false && num => 10)
 
 ///////////////////////
 
@@ -210,6 +222,9 @@ if ((y >= 4 && num != 14) || x > 0) {
 
 negate it:
 
+if (!((y >= 4 && num != 14) || x > 0))
+if (!(y >= 4 && num != 14) && x <= 0)
+if ((y < 4 || num == 14) && x <= 0)
 
 ///////////////////////
 
@@ -229,22 +244,38 @@ p → q ≡  ¬p ∨ q                     (can turn implies into an or)
 
 associative laws
 
-    (2 + 3) + 5 = ?
+    (2 + 3) + 5 = ?   2 + (3 + 5)
 
-    (p ∧ q) ∧ r     vs      ???   
+    (p ∧ q) ∧ r     vs      ???   p ∧ (q ∧ r)
 
 
-    (p → q) → r     vs      ???
+    (p → q) → r     vs      ???  p → (q → r)
 
     how to show logically equivalent? 
 
+    implies is NOT associative
+
     how to show NOT equivalent? 
 
+    find ONE truth assignment where the two statements have different outputs
+
+    (p → q) → r is False
+    p → (q → r) is True
+
+    p = F 
+    q = T
+    r = F
+
+They are not equivalent because the two statements have different output on the above truth assignment.
 
 
 commutative laws 
 
+p ∧ q  vs q ∧ p
+ 
+p → q  vs q → p
 
+p = T, q = F makes the first statement false but the second statement true, so implies is not commutative.
 
 --> you may still be asked to demonstrate these with
     truth tables or prove them with natural deduction (coming soon)
@@ -256,10 +287,13 @@ Summary of equivalence.
 
 How do we prove two statements ARE equivalent?
 
-
+two truth tables
+show that for every truth assignment, they have the same output
 
 How do we prove two statements are NOT equivalent?
 
+find one truth assignment is a counterexample
+the truth assignments false...(look other notes)
 
 
 
@@ -269,29 +303,36 @@ What is equivalent to:
 
 ¬p → q
 
-
+¬q → ¬p
+(look other notes)
 //////////////////////////
 
 Satisfiability.
 
 - definition: 
-
+ a logical statement is satisfiable if I can find a truth assignment where the statement outputs true
 
 - what kind of statement is satisfiable? what kind is not?
 
+satisfiable contringent, tautology
+not satisfiable satisfiable: contradictory
 
 - is this satisfiable?
 
     (p ∨ ¬q) ∧ (q ∨ ¬r) ∧ (r ∨ ¬p)
 
+yes 
+
+p = T
+q = T
+r = T
+
+makes statement output true
 
 
+to show a statement is satisifiable: one truth assignment
 
-
-
-to show a statement is satisifiable: 
-
-to show a statement is NOT satisfiable: 
+to show a statement is NOT satisfiable: full truth table, classified as contradictory (outputs false for every truth assignment)
 
 
 ////////////////////////////
