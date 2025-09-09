@@ -22,8 +22,13 @@ Associativity.
 
 Meaning?
 
+(p ∧ q) ∧ r equivalent to p ∧ (q ∧ r)
+
 
 Which operators are associative? Which are not?
+
+ARE associative: and, or
+NOT associative: implies
 
 How to prove each case?
 
@@ -32,9 +37,16 @@ How to prove each case?
 
 Commutativity.
 
-Meaning?
+Meaning? order doesn't matter
+
+p ∧ q equivalent to q ∧ p
 
 Which operators are commutative? Which are not?
+
+ARE commutative: and, or
+NOT commutative: implies
+
+p -> q vs q -> p
 
 How to prove each case?
 
@@ -45,15 +57,15 @@ How to prove each case?
 
 Satisfiability.
 
---> definition? 
+--> definition? for a logical statement, there is at least one truth assignment that evaluates to true
 
 --> how to prove something is satisfiable?
 
-
+just need one truth assignment where the statement outputs true
 
 --> how to prove something is not satisfiable?
 
-
+full truth table, show it is contradictory (all outputs false)
 
 ////////////////////////////
 
@@ -61,7 +73,10 @@ SAT
 
 straightforward approach to checking all possibilities:
 
+logical statment, variable p, q, etc
 
+generate all truth assignments, try them all
+n variable 2^n truth assignments
 
 
 - Aside: P and NP problems
@@ -93,8 +108,10 @@ An argument is of the form:
 
 
 --> When is an argument considered valid?
+implies statement, only false when T->F
 
-
+valid: anytime all premises are true, the conclusion is true
+invalid: can find a time when all premises true, but the conclusion is false
 
 
 ///////////////////////////////////////
@@ -117,7 +134,11 @@ I want to prove:
 
 
 Propositional atoms:
+(Bits of information that are either true or false and don't contain any operators)
 
+p: I am in the CS dept
+q: I am in the ECE dept
+r: I can log in to the CS lab computers
 
 
 Translations:
@@ -137,7 +158,7 @@ Format for a truth table proof:
 
              (mark * for each premise/conclusion)
 --------------------------------------------------------------
-variables # (premise1, premise2, ..., premiseN) ⊢ conclusion
+variables # (premise1, premise2, ..., premiseN) ⊢ (|-) conclusion
 ---------------------------------------------------------------
 ... fill in like a truth table for each premise and conclusion
 ---------------------------------------------------------------
@@ -171,7 +192,7 @@ We wish to prove:
 
 When is an argument invalid?
 
-
+find
 
 
 Example:
@@ -185,13 +206,19 @@ Proposed conclusion:
 
 1) Translate to propositional logic
 
+p: It is sunny
+q: I wear sunscreen
 
-
+Premises: p -> q, q
+Conclusion: p
 
 
 2) How can we show it is invalid?
 
+Counterexample:
+p = F, q = T
 
+makes both premises true, 
 
 
 ////////////////////////////////
@@ -374,9 +401,9 @@ Justifications so far:
 
     AndI(lhsNum, rhsNum)
 
-    AndE1(andNum)
+    AndE1(andNum) (left side)
 
-    AndE2(andNum)
+    AndE2(andNum) (right side)
 
 
 --> what do these look like in programming?
